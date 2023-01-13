@@ -21,8 +21,8 @@ function RandomDraw() {
 
   return (
     <div>
-      <Button variant="primary" onClick={handleClick}>Sortear o fazedor</Button>
-      {winner && <p className="text-center my-3">O fazedor é: {winner}</p>}
+      <Button variant="primary" onClick={handleClick}>Que os jogos comece!</Button>
+      {winner && <p className="text-center my-3">E o escolhido foi você {winner}</p>}
     </div>
   );
 }
