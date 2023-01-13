@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
 
-function App() {
+const names = ["Jefferson", "Guilherme", "Vito", "Nilson", "Tony", "Elton"];
+
+function RandomDraw() {
+  const [winner, setWinner] = useState('');
+  const [usedNames, setUsedNames] = useState([]);
+
+  const handleClick = () => {
+    let remainingNames = names.filter(name => !usedNames.includes(name));
+    if (remainingNames.length === 0) {
+      remainingNames = names;
+      setUsedNames([]);
+    }
+
+    const randomIndex = Math.floor(Math.random() * remainingNames.length);
+    setWinner(remainingNames[randomIndex]);
+    setUsedNames([...usedNames, remainingNames[randomIndex]]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Button variant="primary" onClick={handleClick}>Sortear o fazedor</Button>
+      {winner && <p className="text-center my-3">O fazedor é: {winner}</p>}
     </div>
   );
 }
 
-export default App;
+export default RandomDraw;
